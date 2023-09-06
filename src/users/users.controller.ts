@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException } from '@nestjs/common';
-import { UserService } from './users.service';
+import { UsersService } from './users.service';
 import { User } from './user.entity';
 
 @Controller('users')
     export class UsersController {
-    constructor(private readonly usersService: UserService) {}
+    constructor(private readonly usersService: UsersService) {}
 
     //get all users
     @Get()
