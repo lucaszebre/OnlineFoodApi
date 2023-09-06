@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Post,UseGuards,Get,Request } from '@nestjs/common';
+import { Body, Controller, Post,UseGuards,Get,Request, Res } from '@nestjs/common';
 import { UsersService } from '../users/users.service'
 import { AuthGuard } from './auth.guard';
+import { Response } from 'express';
 
 import * as bcrypt from 'bcrypt';
 import { AuthService } from './auth.service';
@@ -28,12 +29,20 @@ export class AuthController {
         email: result.email
     };
     }
-    @UseGuards(AuthGuard)
 
     @Post('/login')
-    signIn(@Body() signInDto: Record<string, any>) {
-        return this.authService.signIn(signInDto.email, signInDto.password);
+    async signIn(@Body() signInDto: { email: string, password: string }, @Res() res: Response) {
+        const result = await this.authService.signIn(signInDto.email, signInDto.password);
+        
+        if (result && result.access_token) {
+            res.header('Authorization', `Bearer ${result.access_token}`);
+            return res.status(200).send(result);
+        }
+    
+      // ... handle failed login ...
     }
+    
+    @UseGuards(AuthGuard)
     @Get('profile')
     getProfile(@Request() req) {
         return req.user;
