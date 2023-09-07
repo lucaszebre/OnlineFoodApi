@@ -6,6 +6,7 @@ import { Response } from 'express';
 
 import * as bcrypt from 'bcrypt';
 import { AuthService } from './auth.service';
+import { Public } from './decorators/public.decorator';
 @Controller('auth')
 export class AuthController {
     constructor(
@@ -13,6 +14,7 @@ export class AuthController {
         private readonly authService: AuthService, // Inject the AuthService
         ) {}
     //post / signup
+    @Public()
     @Post('/register')
     async addUser(
         @Body('password') userPassword: string,
@@ -29,7 +31,7 @@ export class AuthController {
         email: result.email
     };
     }
-
+    @Public()
     @Post('/login')
     async signIn(@Body() signInDto: { email: string, password: string }, @Res() res: Response) {
         const result = await this.authService.signIn(signInDto.email, signInDto.password);
@@ -41,10 +43,22 @@ export class AuthController {
     
       // ... handle failed login ...
     }
-    
+   
     @UseGuards(AuthGuard)
     @Get('profile')
     getProfile(@Request() req) {
         return req.user;
+    }
+
+    @UseGuards(AuthGuard) // Protect the logout route with your authentication guard
+    @Post('/logout')
+    async logout(@Request() req, @Res() res: Response) {
+        
+        res.setHeader('Authorization', ''); // Clear the Authorization header (if you are using headers)
+
+        // You can also add additional logout logic here, such as invalidating sessions or tokens.
+        
+        // Return a success message or an appropriate response.
+        return res.status(200).json({ message: 'Logout successful' });
     }
 }
