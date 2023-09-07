@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Post,UseGuards,Get,Request, Res } from '@nestjs/common';
+import { Body, Controller, Post,UseGuards,Get,Request, Res, Header } from '@nestjs/common';
 import { UsersService } from '../users/users.service'
 import { AuthGuard } from './auth.guard';
 import { Response } from 'express';
@@ -31,9 +31,10 @@ export class AuthController {
         email: result.email
     };
     }
-    
+
     @Public()
     @Post('/login')
+    @Header('Authorization', 'none')
     async signIn(@Body() signInDto: { email: string, password: string }, @Res() res: Response) {
         const result = await this.authService.signIn(signInDto.email, signInDto.password);
         
