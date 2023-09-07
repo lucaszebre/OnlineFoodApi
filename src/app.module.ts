@@ -11,6 +11,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { ProductsModule } from './products/products.module';
 import { CommentsModule } from './comments/comments.module';
 import { ReservationsModule } from './reservations/reservations.module';
+import { ReportsModule } from './reports/reports.module';
+import { OrderItemsModule } from './order-items/order-items.module';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { ReservationsModule } from './reservations/reservations.module';
     ProductsModule,
     CommentsModule,
     ReservationsModule,
+    ReportsModule,
+    OrderItemsModule,
   ],
   controllers: [AppController],
   providers: [AppService,{
