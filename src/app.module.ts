@@ -12,13 +12,6 @@ import { ProductsModule } from './products/products.module';
 import { CommentsModule } from './comments/comments.module';
 import { ReservationsModule } from './reservations/reservations.module';
 import { ReportsModule } from './reports/reports.module';
-import { OrderItemsModule } from './order-items/order-items.module';
-import { PaymentMethodService } from './payment-method/payment-method.service';
-import { PaymentMethodModule } from './payment-method/payment-method.module';
-import { DeliveryChargeController } from './delivery-charge/delivery-charge.controller';
-import { DeliverychargeService } from './deliverycharge/deliverycharge.service';
-import { DeliveryChargeService } from './delivery-charge/delivery-charge.service';
-import { DeliveryChargeModule } from './delivery-charge/delivery-charge.module';
 
 @Module({
   imports: [
@@ -40,14 +33,11 @@ import { DeliveryChargeModule } from './delivery-charge/delivery-charge.module';
     CommentsModule,
     ReservationsModule,
     ReportsModule,
-    OrderItemsModule,
-    PaymentMethodModule,
-    DeliveryChargeModule,
   ],
-  controllers: [AppController, DeliveryChargeController],
+  controllers: [AppController, ],
   providers: [AppService,{
     provide: APP_GUARD,
     useClass: AuthGuard,
-  }, PaymentMethodService, DeliverychargeService, DeliveryChargeService],
+  }, ],
 })
 export class AppModule {}
