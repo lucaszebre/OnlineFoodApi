@@ -31,6 +31,7 @@ export class AuthController {
         email: result.email
     };
     }
+    
     @Public()
     @Post('/login')
     async signIn(@Body() signInDto: { email: string, password: string }, @Res() res: Response) {
