@@ -9,6 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
 import { ProductsModule } from './products/products.module';
+import { CommentsModule } from './comments/comments.module';
+import { ReservationsModule } from './reservations/reservations.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { ProductsModule } from './products/products.module';
     }),
     AuthModule,
     ProductsModule,
+    CommentsModule,
+    ReservationsModule,
   ],
   controllers: [AppController],
   providers: [AppService,{
