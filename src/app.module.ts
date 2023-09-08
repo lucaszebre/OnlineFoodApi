@@ -12,6 +12,7 @@ import { ProductsModule } from './products/products.module';
 import { CommentsModule } from './comments/comments.module';
 import { ReservationsModule } from './reservations/reservations.module';
 import { ReportsModule } from './reports/reports.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ReportsModule } from './reports/reports.module';
     CommentsModule,
     ReservationsModule,
     ReportsModule,
+    OrdersModule,
   ],
   controllers: [AppController, ],
   providers: [AppService,{
