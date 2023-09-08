@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Recipe } from '../orders.interface';
 
 @Entity()
 export class Order {
@@ -21,6 +22,8 @@ export class Order {
     @Column()
     status: boolean;
     
-    @Column()
-    recipe: JSON;
+    @Column({
+        type: 'jsonb'
+        })
+        properties: Recipe
 }

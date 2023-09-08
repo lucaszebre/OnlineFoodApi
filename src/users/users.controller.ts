@@ -6,6 +6,7 @@ import { User } from './user.entity';
 import { CommentsService } from 'src/comments/comments.service';
 import { ReportsService } from 'src/reports/reports.service';
 import { ReservationsService } from 'src/reservations/reservations.service';
+import { OrdersService } from 'src/orders/orders.service';
 @Controller('users')
     export class UsersController {
     constructor(
@@ -13,6 +14,7 @@ import { ReservationsService } from 'src/reservations/reservations.service';
         private readonly commentService:CommentsService,
         private readonly reportService:ReportsService,
         private readonly reservationService: ReservationsService,
+        private readonly orderService : OrdersService
         ) {}
 
     //get all users
@@ -59,11 +61,11 @@ import { ReservationsService } from 'src/reservations/reservations.service';
     async getUserComments(@Param('userId') userId: string) {
         return this.commentService.findAllCommentUser(parseInt(userId))
     }
-    // // Get all the order of a user 
-    // @Get(':userId/order')
-    // async getUserOrders(@Param('userId') userId: string) {
-    //     return this.commentService.findAllCommentUser(parseInt(userId))
-    // }
+    // Get all the order of a user 
+    @Get(':userId/order')
+    async getUserOrders(@Param('userId') userId: string) {
+        return this.orderService.findOrderUsers(parseInt(userId))
+    }
     // Get all the Report of a user 
     @Get(':userId/reports')
     async getUserReports(@Param('userId') userId: string) {
