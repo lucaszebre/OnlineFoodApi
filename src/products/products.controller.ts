@@ -3,10 +3,13 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Product } from './entities/product.entity';
-
+import { CommentsService } from 'src/comments/comments.service';
+import { Comment } from 'src/comments/entities/comment.entity';
 @Controller('products')
 export class ProductsController {
-  constructor(private readonly productsService: ProductsService) {}
+  
+  constructor(private readonly productsService: ProductsService,
+    private readonly commentService :CommentsService) {}
 
   @Post()
   create(@Body() product:Product): Promise<Product> {
@@ -25,16 +28,15 @@ export class ProductsController {
 
   @Get(':productId/comment')
   async getProductComments(@Param('productId') productId: string) {
-    // Use productId to retrieve comments for a specific product
+    return this.productsService.findCommentOfProduct(parseInt(productId))
   }
 
   @Post(':productId/comment')
   async addCommentToProduct(
-    @Param('productId') productId: string,
-    @Body() product:Product): Promise<Product>
+    @Param('productId') productId: number,
+    @Body() comment:Comment): Promise<Comment>
   {
-    return 
-    // Use productId and createCommentDto to add a comment to a specific product
+    return this.commentService.create({...comment,product_id:productId})
   }
 
 
