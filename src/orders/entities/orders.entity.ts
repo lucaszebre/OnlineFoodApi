@@ -8,13 +8,19 @@ export class Order {
 
     @Column()
     name: string;
-
-    @Column()
-    description: string;
-
-    @Column()
-    price: string;
     
     @Column()
-    url: string;
+    user_id: number;
+
+    @Column()
+    order_date: string;
+
+    @Column()
+    total_price: string;
+    
+    @Column()
+    status: boolean;
+    
+    @Column()
+    recipe: JSON;
 }
