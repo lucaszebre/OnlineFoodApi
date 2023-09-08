@@ -17,6 +17,9 @@ export class ReportsService {
   async findAll(): Promise<Report[]> {
     return this.reportRepository.find();
   }
+  async findAllReportUser(user_id:number): Promise<Report[]> {
+    return this.reportRepository.find({ where: { user_id } });
+  }
 
   async findOne(id: number): Promise<Report> {
     return this.reportRepository.findOne({ where: { id } });

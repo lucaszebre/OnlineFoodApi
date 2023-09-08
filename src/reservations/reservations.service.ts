@@ -17,6 +17,9 @@ export class ReservationsService {
 
   async findAll(): Promise<Reservation[]> {
     return this.reservationRepository.find();
+  } 
+  async findAllReservationUser(user_id:number): Promise<Reservation[]> {
+    return this.reservationRepository.find({where:{user_id}});
   }
 
   async findOne(id: number): Promise<Reservation> {

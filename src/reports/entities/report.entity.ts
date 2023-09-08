@@ -12,4 +12,7 @@ export class  Report  {
     @Column()
     text:string
 
+    @Column()
+    user_id:number
+
 }

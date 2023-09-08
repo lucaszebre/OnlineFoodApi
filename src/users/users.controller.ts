@@ -4,11 +4,15 @@ import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException } fr
 import { UsersService } from './users.service';
 import { User } from './user.entity';
 import { CommentsService } from 'src/comments/comments.service';
+import { ReportsService } from 'src/reports/reports.service';
+import { ReservationsService } from 'src/reservations/reservations.service';
 @Controller('users')
     export class UsersController {
     constructor(
         private readonly usersService: UsersService,
-        private readonly commentService:CommentsService
+        private readonly commentService:CommentsService,
+        private readonly reportService:ReportsService,
+        private readonly reservationService: ReservationsService,
         ) {}
 
     //get all users
@@ -54,5 +58,20 @@ import { CommentsService } from 'src/comments/comments.service';
     @Get(':userId/comment')
     async getUserComments(@Param('userId') userId: string) {
         return this.commentService.findAllCommentUser(parseInt(userId))
+    }
+    // // Get all the order of a user 
+    // @Get(':userId/order')
+    // async getUserOrders(@Param('userId') userId: string) {
+    //     return this.commentService.findAllCommentUser(parseInt(userId))
+    // }
+    // Get all the Report of a user 
+    @Get(':userId/reports')
+    async getUserReports(@Param('userId') userId: string) {
+        return this.reportService.findAllReportUser(parseInt(userId))
+    }
+    // Get all the reservation of a user 
+    @Get(':userId/reservations')
+    async getUserReservation(@Param('userId') userId: string) {
+        return this.reservationService.findAllReservationUser(parseInt(userId))
     }
     }
