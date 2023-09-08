@@ -23,6 +23,21 @@ export class ProductsController {
     return this.productsService.findOne(id);
   }
 
+  @Get(':productId/comment')
+  async getProductComments(@Param('productId') productId: string) {
+    // Use productId to retrieve comments for a specific product
+  }
+
+  @Post(':productId/comment')
+  async addCommentToProduct(
+    @Param('productId') productId: string,
+    @Body() product:Product): Promise<Product>
+  {
+    return 
+    // Use productId and createCommentDto to add a comment to a specific product
+  }
+
+
   @Put(':id')
   update(@Param('id') id: number, @Body() product:Product): Promise<any> {
     return this.productsService.update(id, product);

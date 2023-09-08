@@ -26,7 +26,7 @@ Online food system API built using **NESTJS** and **POSTGRESQL**. It follows a *
 | GET | /product/[productId]                   | Public | Get one product information 
 | GET | /comments/[commentId]                  | Private | get a one comment
 | DELETE  | /comments/[commentId]                         | Private | Delete the current comment |
-POST | /product/[postId]/comment                  | Private | create a comment under a plate
+POST | /product/[productId]/comment                  | Private | create a comment under a plate
 | PUT | /comment/[commentId]              | PRIVATE | update the comment
 | GET | /user/[userId]/comment              | PRIVATE | GET All the comments of the user who is login
 | POST | /user/[userId]/reservation             | PRIVATE | Make a reservation 
