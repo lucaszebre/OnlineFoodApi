@@ -1,4 +1,6 @@
-Online food system API built using **NESTJS** and **POSTGRESQL**. It follows a **RESTFul** design architecture. It's richly built with a simple scientific technique and best practices in the world of **API** design.
+![DataModel](https://github.com/lucaszebre/OnlineFoodApi/assets/76404328/a8c27b47-a597-43d3-addb-e9cf96c58574)
+Online food system API built using **NESTJS** and **POSTGRESQL**. It follows a **RESTFul** design archi
+tecture. It's richly built with a simple scientific technique and best practices in the world of **API** design.
 
 ## Features
 - auth as user , admin 
