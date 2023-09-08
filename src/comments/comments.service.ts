@@ -26,8 +26,8 @@ export class CommentsService {
     return this.commentRepository.findOne({ where: { id } });
   }
 
-  async update(id: number, user: Partial<Comment>): Promise<Comment> {
-    await this.commentRepository.update(id, user);
+  async update(id: number, comment: Partial<Comment>): Promise<Comment> {
+    await this.commentRepository.update(id, comment);
     return this.commentRepository.findOne({ where: { id } });
   }
 

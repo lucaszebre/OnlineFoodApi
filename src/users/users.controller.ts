@@ -57,12 +57,12 @@ import { OrdersService } from 'src/orders/orders.service';
         return this.usersService.delete(id);
     }
     // Get all the comment of a user 
-    @Get(':userId/comment')
+    @Get(':userId/comments')
     async getUserComments(@Param('userId') userId: string) {
         return this.commentService.findAllCommentUser(parseInt(userId))
     }
     // Get all the order of a user 
-    @Get(':userId/order')
+    @Get(':userId/orders')
     async getUserOrders(@Param('userId') userId: string) {
         return this.orderService.findOrderUsers(parseInt(userId))
     }

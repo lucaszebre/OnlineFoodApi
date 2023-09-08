@@ -23,7 +23,7 @@ tecture. It's richly built with a simple scientific technique and best practices
 |POST     | /auth/logout                         | Private | logout the current user                      |
 | POST  | /product                          | Private | Admin upload a new product  user                            |
 | PUT    | /product/[productId]                  | Private |  Admin update a product                   |
-| DELETE    | /product/[productId] |[postId]             | Private | Admin Delete a product 
+| DELETE    | /product/[productId]            | Private | Admin Delete a product 
 | GET| /product                 | PUBLIC | Get all the product   
 | GET | /product/[productId]                   | Public | Get one product information 
 | GET | /comments/[commentId]                  | Private | get a one comment
