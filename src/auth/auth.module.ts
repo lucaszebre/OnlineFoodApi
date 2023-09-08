@@ -5,6 +5,7 @@ import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
+import { UserExistsMiddleware } from './middleware/alreadyRegister';
 
 
 @Module({
@@ -13,7 +14,7 @@ import { jwtConstants } from './constants';
     secret: jwtConstants.secret,
     signOptions: { expiresIn: '1h' },
   }),],
-  providers: [AuthService],
+  providers: [AuthService,UserExistsMiddleware],
   controllers: [AuthController],
   exports: [AuthService],
 })

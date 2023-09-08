@@ -7,6 +7,7 @@ import { Response } from 'express';
 import * as bcrypt from 'bcrypt';
 import { AuthService } from './auth.service';
 import { Public } from './decorators/public.decorator';
+import { UserExistsMiddleware } from './middleware/alreadyRegister';
 @Controller('auth')
 export class AuthController {
     constructor(
@@ -15,6 +16,7 @@ export class AuthController {
         ) {}
     //post / signup
     @Public()
+    @UseGuards(UserExistsMiddleware) // Use the middleware on the registration route
     @Post('/register')
     async addUser(
         @Body('password') userPassword: string,
@@ -64,3 +66,5 @@ export class AuthController {
         return res.status(200).json({ message: 'Logout successful' });
     }
 }
+
+

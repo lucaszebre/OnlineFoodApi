@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
@@ -13,6 +13,7 @@ import { CommentsModule } from './comments/comments.module';
 import { ReservationsModule } from './reservations/reservations.module';
 import { ReportsModule } from './reports/reports.module';
 import { OrdersModule } from './orders/orders.module';
+import { UserExistsMiddleware } from './auth/middleware/alreadyRegister';
 
 @Module({
   imports: [
@@ -42,4 +43,10 @@ import { OrdersModule } from './orders/orders.module';
     useClass: AuthGuard,
   }, ],
 })
-export class AppModule {}
+
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(UserExistsMiddleware)
+      .forRoutes({ path: 'auth/register', method: RequestMethod.POST });
+  }}
