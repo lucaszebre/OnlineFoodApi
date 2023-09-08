@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException, BadRequestException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
 import { CommentsService } from 'src/comments/comments.service';
@@ -20,7 +20,10 @@ import { OrdersService } from 'src/orders/orders.service';
     //get all users
     @Get()
     async findAll(): Promise<User[]> {
-        return this.usersService.findAll();
+    
+            return await this.usersService.findAll();
+        
+        
     }
 
     //get user by id
@@ -37,7 +40,13 @@ import { OrdersService } from 'src/orders/orders.service';
     //create user
     @Post()
     async create(@Body() user: User): Promise<User> {
-        return this.usersService.create(user);
+        try {
+            return this.usersService.create(user);
+        } catch (error) {
+            throw new BadRequestException('Some propertie is missing -_-', { cause: new Error(), description: 'Some error description' })
+
+        }
+        
     }
 
     //update user
