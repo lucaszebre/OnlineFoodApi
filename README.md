@@ -31,27 +31,16 @@ tecture. It's richly built with a simple scientific technique and best practices
 POST | /product/[productId]/comment                  | Private | create a comment under a plate
 | PUT | /comment/[commentId]              | PRIVATE | update the comment
 | GET | /user/[userId]/comment              | PRIVATE | GET All the comments of the user who is login
-| POST | /user/[userId]/reservation             | PRIVATE | Make a reservation 
-| PUT | /user/[userId]/reservation/[reservationId]             | PRIVATE | Update the  reservation 
-| GET | /user/[userId]/reservation             | PRIVATE | Get all the reservation of a user 
-| DELETE | /user/[userId]/reservation/[reservationId]            | PRIVATE | Cancel the reservation of user
 | DELETE | /reservation/[reservationId]            | PRIVATE | Cancel the reservation of user as admin
 | POST | /reservation           | PRIVATE | Make a reservation for a user as admin
 | PUT | /reservation/[reservationId]          | PRIVATE |Update a reservation for a user as admin
 | DELETE | /reservation/[reservationId]          | PRIVATE |Delete a reservation for a user as admin
-| PUT| /user/[userId]/report/[reportId]          | PRIVATE |Update a report as a user 
-| DELETE | /user/[userId]/report/[reportId]          | PRIVATE |Delete a report as a user 
-| POST | /user/[userId]/report          | PRIVATE |Add a report as a user 
 | GET | /user/[userId]/report          | PRIVATE |Get all the report of a user 
 | GET | /report/[reportId]          | PRIVATE |Get one report  
 | UPDATE | /report/[reportId]          | PRIVATE |Update one report  as admin
 | DELETE | /report/[reportId]          | PRIVATE |Delete one report  as admin
 | DELETE | /report       | PRIVATE |Add one report  as admin
-| POST | /user/[userId]/orders       | PRIVATE | make a order as a user
-| PUT | /user/[userId]/orders/[ordersId]       | PRIVATE | Change a order as a user
-| GET | /user/[userId]/orders/[ordersId]       | PRIVATE | Get a order as a user
 | GET | /user/[userId]/orders      | PRIVATE | Get all the order of a user
-| DELETE | /user/[userId]/orders/[orderId]      | PRIVATE | Delete a order of as a user
 | GET | /orders/[orderId]      | PRIVATE | GET a order 
 | GET | /orders     | PRIVATE | GET all the order 
 | PUT | /orders     | PRIVATE | Update a order as admin 

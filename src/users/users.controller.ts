@@ -3,10 +3,13 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
-
+import { CommentsService } from 'src/comments/comments.service';
 @Controller('users')
     export class UsersController {
-    constructor(private readonly usersService: UsersService) {}
+    constructor(
+        private readonly usersService: UsersService,
+        private readonly commentService:CommentsService
+        ) {}
 
     //get all users
     @Get()
@@ -46,5 +49,10 @@ import { User } from './user.entity';
         throw new NotFoundException('User does not exist!');
         }
         return this.usersService.delete(id);
+    }
+    // Get all the comment of a user 
+    @Get(':userId/comment')
+    async getUserComments(@Param('userId') userId: string) {
+        return this.commentService.findAllCommentUser(parseInt(userId))
     }
     }
