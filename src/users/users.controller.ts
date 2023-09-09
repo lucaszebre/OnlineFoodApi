@@ -22,10 +22,10 @@ import { AuthGuard } from 'src/auth/auth.guard';
         ) {}
 
     //get all users
-    @UseGuards(AuthGuard)
+    @Roles(Role.Admin) 
+    @UseGuards(AuthGuard,RolesGuard)
     @Get()
-    // @UseGuards(RolesGuard)
-    // @Roles(Role.Admin) // Specify the required role(s) for this route
+    //// Specify the required role(s) for this route
     async findAll(): Promise<User[]> {
     
             return await this.usersService.findAll();
