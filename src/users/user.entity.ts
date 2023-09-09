@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { Role } from 'src/enums/role.enum';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
@@ -15,7 +16,7 @@ export class User {
     @Column()
     password: string;
 
-    @Column({nullable: true})
-    roles: string;
+    @Column({type:'enum',enum:Role,default:Role.User})
+    role: Role;
     
 }
