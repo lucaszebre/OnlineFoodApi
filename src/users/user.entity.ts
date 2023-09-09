@@ -14,6 +14,8 @@ export class User {
     
     @Column()
     password: string;
-    @Column()
-    roles: string
+
+    @Column({nullable: true})
+    roles: string;
+    
 }

@@ -22,8 +22,8 @@ import { Roles } from './decorators/roles.decorator';
 
     //get all users
     @Get()
-    @UseGuards(RolesGuard)
-    @Roles(Role.Admin) // Specify the required role(s) for this route
+    // @UseGuards(RolesGuard)
+    // @Roles(Role.Admin) // Specify the required role(s) for this route
     async findAll(): Promise<User[]> {
     
             return await this.usersService.findAll();
