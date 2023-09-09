@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException, BadRequestException,UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { RolesGuard } from './users.guard';
+import { Role } from 'src/enums/role.enum';
 import { User } from './user.entity';
 import { CommentsService } from 'src/comments/comments.service';
 import { ReportsService } from 'src/reports/reports.service';
 import { ReservationsService } from 'src/reservations/reservations.service';
 import { OrdersService } from 'src/orders/orders.service';
+import { Roles } from './decorators/roles.decorator';
 @Controller('users')
     export class UsersController {
     constructor(
@@ -19,6 +22,8 @@ import { OrdersService } from 'src/orders/orders.service';
 
     //get all users
     @Get()
+    @UseGuards(RolesGuard)
+    @Roles(Role.Admin) // Specify the required role(s) for this route
     async findAll(): Promise<User[]> {
     
             return await this.usersService.findAll();
