@@ -14,6 +14,7 @@ import { ReservationsModule } from './reservations/reservations.module';
 import { ReportsModule } from './reports/reports.module';
 import { OrdersModule } from './orders/orders.module';
 import { UserExistsMiddleware } from './auth/middleware/alreadyRegister';
+import { RolesGuard } from './users/users.guard';
 
 @Module({
   imports: [
@@ -41,7 +42,10 @@ import { UserExistsMiddleware } from './auth/middleware/alreadyRegister';
   providers: [AppService,{
     provide: APP_GUARD,
     useClass: AuthGuard,
-  }, ],
+  },{
+    provide: APP_GUARD,
+    useClass: RolesGuard,
+  } ],
 })
 
 export class AppModule implements NestModule {
