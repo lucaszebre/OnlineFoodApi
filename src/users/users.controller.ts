@@ -10,6 +10,7 @@ import { ReportsService } from 'src/reports/reports.service';
 import { ReservationsService } from 'src/reservations/reservations.service';
 import { OrdersService } from 'src/orders/orders.service';
 import { Roles } from './decorators/roles.decorator';
+import { AuthGuard } from 'src/auth/auth.guard';
 @Controller('users')
     export class UsersController {
     constructor(
@@ -21,6 +22,7 @@ import { Roles } from './decorators/roles.decorator';
         ) {}
 
     //get all users
+    @UseGuards(AuthGuard)
     @Get()
     // @UseGuards(RolesGuard)
     // @Roles(Role.Admin) // Specify the required role(s) for this route
@@ -32,6 +34,7 @@ import { Roles } from './decorators/roles.decorator';
     }
 
     //get user by id
+    @UseGuards(AuthGuard)
     @Get(':id')
     async findOne(@Param('id') id: number): Promise<User> {
         const user = await this.usersService.findByID(id);
@@ -43,24 +46,26 @@ import { Roles } from './decorators/roles.decorator';
     }
 
     //create user
-    @Post()
-    async create(@Body() user: User): Promise<User> {
-        try {
-            return this.usersService.create(user);
-        } catch (error) {
-            throw new BadRequestException('Some propertie is missing -_-', { cause: new Error(), description: 'Some error description' })
+    // @Post()
+    // async create(@Body() user: User): Promise<User> {
+    //     try {
+    //         return this.usersService.create(user);
+    //     } catch (error) {
+    //         throw new BadRequestException('Some propertie is missing -_-', { cause: new Error(), description: 'Some error description' })
 
-        }
+    //     }
         
-    }
+    // }
 
     //update user
+    @UseGuards(AuthGuard)
     @Put(':id')
     async update (@Param('id') id: number, @Body() user: User): Promise<any> {
         return this.usersService.update(id, user);
     }
 
     //delete user
+    @UseGuards(AuthGuard)
     @Delete(':id')
     async delete(@Param('id') id: number): Promise<any> {
         //handle error if user does not exist
@@ -71,21 +76,25 @@ import { Roles } from './decorators/roles.decorator';
         return this.usersService.delete(id);
     }
     // Get all the comment of a user 
+    @UseGuards(AuthGuard)
     @Get(':userId/comments')
     async getUserComments(@Param('userId') userId: string) {
         return this.commentService.findAllCommentUser(parseInt(userId))
     }
-    // Get all the order of a user 
+    // Get all the order of a user
+    @UseGuards(AuthGuard) 
     @Get(':userId/orders')
     async getUserOrders(@Param('userId') userId: string) {
         return this.orderService.findOrderUsers(parseInt(userId))
     }
-    // Get all the Report of a user 
+    // Get all the Report of a user
+    @UseGuards(AuthGuard)
     @Get(':userId/reports')
     async getUserReports(@Param('userId') userId: string) {
         return this.reportService.findAllReportUser(parseInt(userId))
     }
     // Get all the reservation of a user 
+    @UseGuards(AuthGuard)
     @Get(':userId/reservations')
     async getUserReservation(@Param('userId') userId: string) {
         return this.reservationService.findAllReservationUser(parseInt(userId))
