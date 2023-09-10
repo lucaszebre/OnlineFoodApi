@@ -8,10 +8,7 @@ tecture. It's richly built with a simple scientific technique and best practices
 - add, edit, delete product
 - send order confirmation via email
 - manage online order
-- Ajax hierarchical combobox for payment method.
-- add delivery charge outside the coverage area
 - secure reservation
-- forum for customer comments about the site
 - generates various report
 
 ## API Endpoints
@@ -43,8 +40,8 @@ POST | /product/[productId]/comment                  | Private | create a commen
 | GET | /user/[userId]/orders      | PRIVATE | Get all the order of a user
 | GET | /orders/[orderId]      | PRIVATE | GET a order 
 | GET | /orders     | PRIVATE | GET all the order 
-| PUT | /orders/[orderId]    | PRIVATE | Update a order as admin 
-| DELETE | /orders/[orderId]     | PRIVATE |Delete a order as admin 
+| PUT | /orders/[orderId]    | PRIVATE | Update a order as a user connected
+| DELETE | /orders/[orderId]     | PRIVATE |Delete a order as a user connected 
 
 
                       
