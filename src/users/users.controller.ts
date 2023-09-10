@@ -34,7 +34,8 @@ import { AuthGuard } from 'src/auth/auth.guard';
     }
 
     //get user by id
-    @UseGuards(AuthGuard)
+    @Roles(Role.Admin,Role.User)
+    @UseGuards(AuthGuard,RolesGuard)
     @Get(':id')
     async findOne(@Param('id') id: number): Promise<User> {
         const user = await this.usersService.findByID(id);
@@ -58,13 +59,15 @@ import { AuthGuard } from 'src/auth/auth.guard';
     // }
 
     //update user
-    @UseGuards(AuthGuard)
+    @Roles(Role.Admin,Role.User)
+    @UseGuards(AuthGuard,RolesGuard)
     @Put(':id')
     async update (@Param('id') id: number, @Body() user: User): Promise<any> {
         return this.usersService.update(id, user);
     }
 
     //delete user
+    @Roles(Role.Admin)
     @UseGuards(AuthGuard)
     @Delete(':id')
     async delete(@Param('id') id: number): Promise<any> {

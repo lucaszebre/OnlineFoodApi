@@ -4,6 +4,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Put, UseGuards } fro
 import { Order } from './entities/orders.entity';
 import { OrdersService } from './orders.service';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { Roles } from 'src/users/decorators/roles.decorator';
+import { Role } from 'src/enums/role.enum';
+import { RolesGuard } from 'src/users/users.guard';
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
@@ -22,12 +25,14 @@ export class OrdersController {
   findOne(@Param('id') id: number) {
     return this.ordersService.findOne(id);
   }
+
   @UseGuards(AuthGuard)
   @Put(':id')
   update(@Param('id') id: number, @Body() Order:Order): Promise<any>  {
     return this.ordersService.update(id, Order);
   }
-  @UseGuards(AuthGuard)
+  @Roles(Role.Admin)
+  @UseGuards(AuthGuard,RolesGuard)
   @Delete(':id')
   remove(@Param('id') id: number) {
     return this.ordersService.delete(id);
